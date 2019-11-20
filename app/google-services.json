@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "515003037690",
+    "firebase_url": "https://vmerge-fb173.firebaseio.com",
+    "project_id": "vmerge-fb173",
+    "storage_bucket": "vmerge-fb173.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515003037690:android:ecc13a067aeb0ccf78d643",
+        "android_client_info": {
+          "package_name": "com.example.nitinmalik.uploading_video"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "515003037690-6f7lgqb1lg5ai8k2cd82gr26ks1io1pc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nitinmalik.uploading_video",
+            "certificate_hash": "6c72879a5f2d0d3953308f78c213ddbf4ec4253e"
+          }
+        },
+        {
+          "client_id": "515003037690-ln98o20hdu01iba965h78b590vsljef0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyColaLtXcaADJp36C98cgL6K4nYRC0gc3M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "515003037690-ln98o20hdu01iba965h78b590vsljef0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">VMerge</string>
+    <string name="setting">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+
+    <!-- Example settings for Data & Sync -->
+
+    <!-- Example settings for Notifications -->
+
+</resources>
