@@ -1,6 +1,7 @@
 package com.example.nitinmalik.uploading_video;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,9 +31,12 @@ public class EventListActivity extends AppCompatActivity {
     //this is the JSON Data URL
     //make sure you are using the correct ip else it will not work
     private static final String URL_EVENTS = "http://172.26.1.221/AndroidUploadImage/mysql_db.php";
+    private static final String URL_USER_TYPE = "http://172.26.1.221/AndroidUploadImage/get_user_type.php?email_id=%s";
 
     //a list to store all the products
     List<VideoEvent> eventList;
+    String uri;
+    String user_type;
 
     //the recyclerview
     RecyclerView recyclerView;
@@ -56,12 +61,24 @@ public class EventListActivity extends AppCompatActivity {
         Log.d("ONCREATE","IN ONCREATE");
         loadEvents();
 
+        SharedPreferences user_info = getSharedPreferences("user_info", MODE_PRIVATE);
+        final String email_id = user_info.getString("email_id", "None");
+        uri = String.format(URL_USER_TYPE, email_id);
+        getUserType();
+
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EventListActivity.this, AddEventActivity.class);
-                startActivity(intent);
-                finish();
+
+                if (user_type.equals("admin")){
+                    Intent intent = new Intent(EventListActivity.this, AddEventActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                else {
+                    Toast.makeText(EventListActivity.this, "Only for Admins", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -108,6 +125,49 @@ public class EventListActivity extends AppCompatActivity {
                             //creating adapter object and setting it to recyclerview
                             CustomAdapter adapter = new CustomAdapter(EventListActivity.this, eventList);
                             recyclerView.setAdapter(adapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+
+        //adding our stringrequest to queue
+        stringRequest.setShouldCache(false);
+        queue.add(stringRequest);
+    }
+
+
+    private void getUserType() {
+
+        /*
+         * Creating a String Request
+         * The request type is GET defined by first parameter
+         * The URL is defined in the second parameter
+         * Then we have a Response Listener and a Error Listener
+         * In response listener we will get the JSON response as a String
+         * */
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.getCache().clear();
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, uri,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //converting the string to json array object
+                            JSONArray array = new JSONArray(response);
+                            Log.d("ARRAY_LENGHT",String.valueOf(array.length()));
+                            //traversing through all the object
+
+                                //getting product object from json array
+                                user_type = array.getJSONObject(0).getString("user_type");
+//                                Log.d("DATA",String.valueOf(video.getInt("user_type")));
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
