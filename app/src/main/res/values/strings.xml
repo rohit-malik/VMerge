@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">VMerge</string>
     <string name="setting">Settings</string>
-
+    <string name="search_title">Search Event</string>
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->

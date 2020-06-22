@@ -18,7 +18,10 @@
         <activity android:name=".AddEventActivity" />
         <activity android:name=".StreamVideo" />
         <activity android:name=".VideoListActivity" />
-        <activity android:name=".EventListActivity" />
+        <activity android:name=".EventListActivity">
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

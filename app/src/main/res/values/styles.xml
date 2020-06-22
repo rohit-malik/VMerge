@@ -9,7 +9,7 @@
     </style>
 
     <style name="Button" parent="android:Widget.Button">
-        <item name="android:background">@drawable/btn_army_glossy</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
 </resources>

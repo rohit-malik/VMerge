@@ -5,12 +5,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/video_editors"
     tools:context=".MainActivity">
 
-<!--
+
 
     <Button
         android:id="@+id/button_view"
@@ -18,22 +18,22 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:textColor="@color/photo_crop_highlight_color"
 
         android:textSize="30dp"
-        android:text="Browse_Videos" />
+        android:text="Browse Videos" />
 
--->
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp">
+<!--    <com.google.android.gms.common.SignInButton-->
+<!--        android:id="@+id/sign_in_button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:layout_marginBottom="20dp">-->
 
-    </com.google.android.gms.common.SignInButton>
+<!--    </com.google.android.gms.common.SignInButton>-->
 
 
 </RelativeLayout>

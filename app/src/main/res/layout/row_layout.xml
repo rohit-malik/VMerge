@@ -6,38 +6,46 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/event_rel_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
     android:padding="8dp">
 
-        <TextView
-            android:id="@+id/event_ID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/photo_crop_highlight_color"
-            android:layout_marginLeft="5dp"
-            android:textSize="15dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/event_ID"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="@color/photo_crop_highlight_color"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:textSize="15dp" />-->
+
+        <ImageView android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/image_view"
+            android:contentDescription="TODO" />
 
         <TextView
             android:id="@+id/event_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/event_ID"
+            android:layout_toRightOf="@id/image_view"
             android:textColor="@color/photo_crop_highlight_color"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
-            android:textSize="15dp" />
+            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/event_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/event_name"
+            android:layout_toRightOf="@id/image_view"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="@color/photo_crop_highlight_color"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
+            android:textStyle="italic"
             android:textSize="15dp" />
 
     </RelativeLayout>

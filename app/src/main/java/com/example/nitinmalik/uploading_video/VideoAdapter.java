@@ -2,13 +2,20 @@ package com.example.nitinmalik.uploading_video;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.media.MediaMetadataRetriever;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class VideoAdapter extends RecyclerView.Adapter {
@@ -35,10 +42,25 @@ public class VideoAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder1,final int position) {
         VideoAdapter.MyViewHolder holder = (VideoAdapter.MyViewHolder) holder1;
+        if((position%2)==0) {
+            (holder.parent).setBackgroundColor(Color.parseColor("#2f2f2f"));
+        }
+        else
+        {
+            (holder.parent).setBackgroundColor(Color.parseColor("#434343"));
+        }
         final Video video = videoList.get(position);
         //holder.ViewVideo_ID.setText("Video ID: " + String.valueOf(video.getVideo_ID()));
-        holder.ViewVideo_name.setText("Video Name: " + video.getVideo_name());
+        holder.ViewVideo_name.setText(video.getVideo_name());
         //holder.ViewVideo_desc.setText(video.getVideo_desc());
+        Bitmap bitmap = null;
+        try {
+            bitmap = retriveVideoFrameFromVideo("http://172.26.1.221/AndroidUploadImage/" + event_name + "/" + video.getVideo_name());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        holder.ViewVideo_thumbnail.setImageBitmap(bitmap);
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +81,45 @@ public class VideoAdapter extends RecyclerView.Adapter {
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView ViewVideo_ID, ViewVideo_name, ViewVideo_desc;// init the item view's
+        ImageView ViewVideo_thumbnail;
+        RelativeLayout parent;
         public MyViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
-            ViewVideo_ID = (TextView) itemView.findViewById(R.id.video_ID);
+            //ViewVideo_ID = (TextView) itemView.findViewById(R.id.video_ID);
             ViewVideo_name = (TextView) itemView.findViewById(R.id.video_name);
-            ViewVideo_desc = (TextView) itemView.findViewById(R.id.video_desc);
+            //ViewVideo_desc = (TextView) itemView.findViewById(R.id.video_desc);
+            ViewVideo_thumbnail = itemView.findViewById(R.id.thumbnail);
+            parent = itemView.findViewById(R.id.video_rel_view);
         }
+    }
+
+    public static Bitmap retriveVideoFrameFromVideo(String videoPath)throws Throwable
+    {
+        Bitmap bitmap = null;
+        MediaMetadataRetriever mediaMetadataRetriever = null;
+        try
+        {
+            mediaMetadataRetriever = new MediaMetadataRetriever();
+            if (Build.VERSION.SDK_INT >= 14)
+                mediaMetadataRetriever.setDataSource(videoPath, new HashMap<String, String>());
+            else
+                mediaMetadataRetriever.setDataSource(videoPath);
+            //   mediaMetadataRetriever.setDataSource(videoPath);
+            bitmap = mediaMetadataRetriever.getFrameAtTime(1, MediaMetadataRetriever.OPTION_CLOSEST);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            throw new Throwable("Exception in retriveVideoFrameFromVideo(String videoPath)"+ e.getMessage());
+        }
+        finally
+        {
+            if (mediaMetadataRetriever != null)
+            {
+                mediaMetadataRetriever.release();
+            }
+        }
+        return bitmap;
     }
 }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
     tools:context=".StreamMashup">
 
     <Button
@@ -13,14 +14,14 @@
         android:layout_height="wrap_content"
         android:text="Download Mashup"
         android:textSize="20dp"
-        style="@style/Button"
+        android:background="@drawable/button_style"
         />
 
     <VideoView
         android:id="@+id/VideoViewMash"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_gravity="center"
+        android:layout_gravity="center_vertical"
         />
 
 </LinearLayout>

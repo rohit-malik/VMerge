@@ -45,25 +45,25 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity  implements GoogleApiClient.OnConnectionFailedListener{
 
     Context context = this;
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu items for use in the action bar
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settings, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                openSettings();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu items for use in the action bar
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.settings, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle presses on the action bar items
+//        switch (item.getItemId()) {
+//            case R.id.action_settings:
+//                openSettings();
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 
     public void openSettings(){
         Intent intent = new Intent(this,SettingsActivity.class);
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Button view_button = findViewById(R.id.button_view);
+        Button view_button = findViewById(R.id.button_view);
 
         Intent i = getIntent();
         if (i.getStringExtra("ip_address") != null) {
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
         }
 
 
-/*
+
 
         view_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,28 +119,28 @@ public class MainActivity extends AppCompatActivity  implements GoogleApiClient.
             }
         });
 
-*/
+
 
         //google signin code
 
-        GoogleSignInOptions gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        googleApiClient=new GoogleApiClient.Builder(this)
-                .enableAutoManage(this,this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
-                .build();
-
-
-
-        signInButton=(SignInButton)findViewById(R.id.sign_in_button);
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(intent,RC_SIGN_IN);
-            }
-        });
+//        GoogleSignInOptions gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestEmail()
+//                .build();
+//        googleApiClient=new GoogleApiClient.Builder(this)
+//                .enableAutoManage(this,this)
+//                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+//                .build();
+//
+//
+//
+//        signInButton=(SignInButton)findViewById(R.id.sign_in_button);
+//        signInButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+//                startActivityForResult(intent,RC_SIGN_IN);
+//            }
+//        });
 
 
 

@@ -229,7 +229,7 @@ public class VideoListActivity extends AppCompatActivity {
                     String message = jObj.getString("message");
 
                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-
+                    recreate();
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
@@ -244,9 +244,11 @@ public class VideoListActivity extends AppCompatActivity {
         });
 
         Log.d("path of file",path);
-        SharedPreferences user_info = getSharedPreferences("user_info", MODE_PRIVATE);
-        final String user_name = user_info.getString("user_name", "None");
-        final String email_id = user_info.getString("email_id", "None");
+        //SharedPreferences user_info = getSharedPreferences("user_info", MODE_PRIVATE);
+        //final String user_name = user_info.getString("user_name", "None");
+        //final String email_id = user_info.getString("email_id", "None");
+        final String user_name = "ROHIT KUMAR";
+        final String email_id = "2016csb1055@iitrpr.ac.in";
         Log.d("USERNAME",user_name);
         Log.d("EMAIL_ID", email_id);
         simpleMultiPartRequest.addFile("image",path);
